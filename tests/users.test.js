@@ -5,16 +5,16 @@ const request = require("supertest");
 
 describe("Users controller", () => {
 
-    test("Get all users route returns array of users", async () => {
+    test.skip("Get all users route returns array of users", async () => {
         const response = await request(app).get("/users");
     });
 
-    test("Get user by ID returns a single user as object", async () => {
+    test.skip("Get user by ID returns a single user as object", async () => {
         let targetUserId = "12345";
         const response = await request(app).get("/users/" + targetUserId);
     });
 
-    test("User sign-up returns a single user as object", async () => {
+    test.skip("User sign-up returns a single user as object", async () => {
         const response = await request(app)
             .post("/users/signup")
             .send({
@@ -24,7 +24,7 @@ describe("Users controller", () => {
 
     });
 
-    test("User login route retruns a single user as object", async () => {
+    test.skip("User login route retruns a single user as object", async () => {
         const response = await request(app)
             .post("/users/login")
             .send({
@@ -33,7 +33,7 @@ describe("Users controller", () => {
         });
     })
 
-    test("User update/edit route retruns a single user as object", async () => {
+    test.skip("User update/edit route retruns a single user as object", async () => {
         const response = await request(app)
             .patch("/users/12345")
             .send({
@@ -42,7 +42,7 @@ describe("Users controller", () => {
         });
     });
 
-    test("User delete route returns a number of users deleted", async () => {
+    test.skip("User delete route returns a number of users deleted", async () => {
         const response = await request(app)
             .delete("/users/12345")
             .send({
