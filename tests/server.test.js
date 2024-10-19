@@ -1,3 +1,4 @@
+// Importing the code we want to test
 const {app} = require("../src/server.js");
 
 // importing a testing helper function from supertest
