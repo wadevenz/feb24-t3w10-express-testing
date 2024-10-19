@@ -22,9 +22,13 @@ describe("Users controller", () => {
         expect(response.body.data).toEqual(expect.arrayContaining(expectedUsers));
     });
 
-    test.skip("Get user by ID returns a single user as object", async () => {
+    test("Get user by ID returns a single user as object", async () => {
+        // GET localhost:3000/users/12345
         let targetUserId = "12345";
         const response = await request(app).get("/users/" + targetUserId);
+
+        expect(response.body.result.id).toBe(targetUserId);
+        expect(response.body.result.username).toBe("Pretend this is a username from the database");
     });
 
     test("User sign-up returns a single user as object", async () => {
