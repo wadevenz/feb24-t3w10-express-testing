@@ -44,13 +44,27 @@ describe("Users controller", () => {
 
     });
 
-    test.skip("User login route retruns a single user as object", async () => {
+    // POST localhost:3000/users/login
+    test("User login route retruns a single user as object", async () => {
         const response = await request(app)
             .post("/users/login")
-            .send({
-                username: "jason", 
-                password: "SuperCoolPasword1"
-        });
+            .set("Authorization", "Example string for header value");
+            // .send({
+            //     username: "jason", 
+            //     password: "SuperCoolPasword1"
+        expect(response.body.authHeaderData).toBe("Example string for header value");
+    });
+
+    test("User login route throws an error on invalid login data", async () => {
+        const response = await request(app)
+            .post("/users/login")
+            .set("Authorization", "This should cause an error");
+        // .send({
+        //     username: "jason", 
+        //     password: "SuperCoolPasword1"
+        expect(response.body.authHeaderData).toBeUndefined();
+        expect(response.body.status).toBe(500);
+        expect(response.body.error).toBe("Not valid login data!");
     })
 
     test.skip("User update/edit route retruns a single user as object", async () => {
@@ -70,4 +84,5 @@ describe("Users controller", () => {
                 password: "SuperCoolPasword1"
         });
     });
+
 });
