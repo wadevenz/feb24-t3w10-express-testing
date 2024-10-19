@@ -27,13 +27,16 @@ describe("Users controller", () => {
         const response = await request(app).get("/users/" + targetUserId);
     });
 
-    test.skip("User sign-up returns a single user as object", async () => {
+    test("User sign-up returns a single user as object", async () => {
         const response = await request(app)
             .post("/users/signup")
             .send({
                 username: "jason", 
                 password: "SuperCoolPasword1"
             });
+
+            expect(response.body.username).toBe("jason");
+            expect(response.body.password).toBe("EncryptedPassword");
 
     });
 
